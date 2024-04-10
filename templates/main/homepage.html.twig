@@ -1,44 +1,43 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
     {{ include('main/_header.html.twig') }}
 
-        <h1>Welcome to our Movie Booking System!</h1>
+    <h1>Welcome to our Movie Booking System!</h1>
 
-        <h2>Available Movies:</h2>
-        <div class="row">
-            {% for movie in movies %}
-                <div class="col-lg-3 col-md-3 col-sm-12">
-                    <div class="movie">
-                        <img src="{{ asset(movie.imagePath|slice(7)) }}" alt="{{ movie.title }}" class="img-fluid"/>
+    <h2>Available Movies:</h2>
+    <div class="container">
+        {% for movie in movies %}
+
+            {% if (loop.index is divisible by(2))  %}
+{#                or (loop.index == (0))#}
+                <h1>new row</h1>
+            <div class="row">
+            {% endif %}
+
+                <div class="col-sm-4">
+                    <div class="movie ">
+                        <a href="{{ path('app_movie', {'id': movie.id}) }}">
+                            <img src="{{ asset(movie.imagePath|slice(7)) }}" alt="{{ movie.title }}" class="img-fluid"/>
+                        </a>
                         <div class="movie-details">
                             <h3>{{ movie.title }}</h3>
                             <p>{{ movie.length }}</p>
                         </div>
                     </div>
                 </div>
-                {% if loop.index is divisible by(2) %}
-                    <div class="w-100 d-lg-none d-md-none d-sm-block">
-                        <div style="height: 20px; background-color: red;"></div>
-                    </div> <!-- newline after 2 movies -->
-                {% endif %}
-            {% endfor %}
+
+            {% if (loop.index is divisible by(2))  %}
+                {#                or (loop.index == (0))#}
+                </div>
+            {% endif %}
+
+        {% endfor %}
+        <div class="row">
+
         </div>
+    </div>
+     </div>
 
 
-
-
-
-
-    {#    <ul>#}
-{#        {%  for movie in movies %}#}
-{#            <li>#}
-{#                {% set imagePath = movie.imagePath|slice(7) %}#}
-{#                <img src="{{ asset(imagePath) }}" alt="{{ movie.title }}"#}
-{#                {{ movie.title }}#}
-{#            </li>#}
-
-{#        {%  endfor   %}#}
-{#    </ul>#}
 {% endblock %}
