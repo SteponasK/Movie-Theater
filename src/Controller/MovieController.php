@@ -14,7 +14,7 @@ class MovieController extends AbstractController
     public function index(int $id, EntityManagerInterface $entityManager): Response
     {
         $movie = $entityManager->getRepository(Movie::class)->find($id);
-        var_dump($movie);
+
         return $this->render('movie/index.html.twig',[
            'movie' => $movie,
         ]);

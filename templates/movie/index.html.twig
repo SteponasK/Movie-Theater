@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {{ include('main/_header.html.twig') }}
+
+<div class="col-lg-3 col-md-3 col-sm-12">
+    <div class="movie">
+        <img src="{{ asset(movie.imagePath|slice(7)) }}" alt="{{ movie.title }}" class="img-fluid"/>
+        <div class="movie-details">
+            <h3>{{ movie.title }}</h3>
+            <p>{{ movie.length }}</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
