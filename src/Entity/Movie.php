@@ -31,6 +31,9 @@ class Movie
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $actors = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $imagePath = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Movie
     public function setActors(?string $actors): static
     {
         $this->actors = $actors;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(string $imagePath): static
+    {
+        $this->imagePath = $imagePath;
 
         return $this;
     }
