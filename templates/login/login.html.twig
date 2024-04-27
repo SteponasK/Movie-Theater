@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    {{ include('login/_header.html.twig') }}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -38,5 +39,10 @@
         <button class="btn btn-lg btn-primary" type="submit">
             Sign in
         </button>
+        <div>
+            Do not have an account?
+            <a href="/register">Register</a>
+        </div>
+
     </form>
 {% endblock %}

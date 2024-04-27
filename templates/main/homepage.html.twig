@@ -7,37 +7,24 @@
 
     <h2>Available Movies:</h2>
     <div class="container">
-        {% for movie in movies %}
-
-            {% if (loop.index is divisible by(2))  %}
-{#                or (loop.index == (0))#}
-                <h1>new row</h1>
-            <div class="row">
-            {% endif %}
-
-                <div class="col-sm-4">
-                    <div class="movie ">
-                        <a href="{{ path('app_movie', {'id': movie.id}) }}">
-                            <img src="{{ asset(movie.imagePath|slice(7)) }}" alt="{{ movie.title }}" class="img-fluid"/>
-                        </a>
-                        <div class="movie-details">
-                            <h3>{{ movie.title }}</h3>
-                            <p>{{ movie.length }}</p>
-                        </div>
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-sm-6">
+                <div class="movie">
+                    <a href="{{ path('app_movie', {'id': movie.id}) }}">
+                        <img src="{{ asset(movie.imagePath|slice(7)) }}" alt="{{ movie.title }}" class="img-fluid"/>
+                    </a>
+                    <div class="movie-details">
+                        <h3>{{ movie.title }}</h3>
+                        <p>{{ movie.length }}</p>
                     </div>
                 </div>
-
-            {% if (loop.index is divisible by(2))  %}
-                {#                or (loop.index == (0))#}
-                </div>
+            </div>
+            {% if loop.index is divisible by(2) %}
+        </div><div class="row">
             {% endif %}
-
-        {% endfor %}
-        <div class="row">
-
+            {% endfor %}
         </div>
     </div>
-     </div>
-
-
 {% endblock %}
+
